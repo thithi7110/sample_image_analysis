@@ -1,0 +1,11 @@
+# python cache
+*/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache
+
+# dev
+.vscode/
+test.db
+.venv
+.DS_Store

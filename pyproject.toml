@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "sample-image-analysis"
+version = "0.1.0"
+description = ""
+authors = ["thithi7110 <thithi7110@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sample_image_analysis"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.109.2"
+uvicorn = "^0.27.1"
+sqlalchemy = "^2.0.27"
+pydantic = "^2.6.1"
+alembic = "^1.13.1"
+requests = "^2.31.0"
+python-dotenv = "^1.0.1"
+pymysql = "^1.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+requests-mock = "^1.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
