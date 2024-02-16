@@ -1,9 +1,9 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from services.analyze_image_service import AnalyzeImage
 import pytest
 import requests_mock
-from services.analyze_image_service import AnalyzeImage
 
 @pytest.fixture
 def analyze_image():

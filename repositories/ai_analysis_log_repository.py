@@ -1,5 +1,4 @@
 from sqlalchemy.future import select
-from sqlalchemy import update, delete
 from models.ai_analysis_log import AIAnalysisLog
 from repositories.base_repository import BaseRepository
 

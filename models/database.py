@@ -4,6 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 DATABASE_URL = os.environ.get("DB_CONNECTION_STRING")
+if not DATABASE_URL:
+    raise ValueError("DB_CONNECTION_STRING is not set")
 
 engine = create_engine(DATABASE_URL, echo=True)
 
@@ -16,6 +18,3 @@ def get_db():
         yield db
     finally:
         db.close()
-
-if __name__ == "__main__":
-    Base.metadata.create_all(bind=engine)

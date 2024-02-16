@@ -52,3 +52,14 @@ poetry shell
 uvicorn main:app --port 5000 --reload
 ```
 
+
+## mypyチェック
+- mypyによるエラーチェック
+```
+poetry run mypy .
+```
+
+## pytest
+```
+poetry run pytest .
+```
