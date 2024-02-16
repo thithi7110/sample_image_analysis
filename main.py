@@ -3,29 +3,21 @@ load_dotenv()
 from repository_builders.ai_analysis_log_repository_builders import get_ai_analysis_log_repository
 from repositories.ai_analysis_log_repository import AIAnalysisLogRepository
 from services.analyze_image_service import AnalyzeImage
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import APIRouter, Depends, FastAPI, HTTPException
 from pydantic import BaseModel
+from api.api import router as api_router
+from fastapi.logger import logger
 
-app = FastAPI()
+app = FastAPI(
+    title="sample_image_analyzer",
+    openapi_url=f"/openapi.json",
+    description="This is a sample image analyzer API.",
+)
 
-# リクエストボディのモデル定義
-class ImagePathRequest(BaseModel):
-    image_path: str
+try:
+    app.include_router(api_router, prefix="/api", tags=["API"])
 
-# 分析結果を模擬的に返却するエンドポイント
-@app.post("/analyze-image/")
-async def analyze_image(request: ImagePathRequest,
-    repository: AIAnalysisLogRepository = Depends(get_ai_analysis_log_repository)):
-    analyze_image = AnalyzeImage()
-    image_description_response = analyze_image.analyze(request.image_path)
-    repository.create_ai_analysis_log(
-        image_path=request.image_path,
-        success=image_description_response.success,
-        message=image_description_response.message,
-        class_=image_description_response.estimated_data.get("class"),
-        confidence=image_description_response.estimated_data.get("confidence"),
-        request_timestamp=0,
-        response_timestamp=0
-    )
-    
-    return image_description_response
+except AttributeError as e:
+    logger.error(f"exception: {e}")
+except Exception as e:
+    logger.error(f"exception: {e}")

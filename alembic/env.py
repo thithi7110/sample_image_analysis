@@ -5,19 +5,22 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 import os
-
 # models.database モジュールから Base をインポート
 from models.database import Base
 
 # Alembic の設定を読み込む
 config = context.config
+DATABASE_URL = os.environ.get("DB_CONNECTION_STRING")
+if not DATABASE_URL:
+    raise ValueError("DB_CONNECTION_STRING is not set")
+config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
-config.set_main_option("sqlalchemy.url", os.environ.get("DB_CONNECTION_STRING"))
-
+if(not config.config_file_name):
+    raise ValueError("config_file_name is not set. set alembic.ini path to project root directory.")
 fileConfig(config.config_file_name)
 
 # ここで target_metadata を設定
-target_metadata = Base.metadata
+target_metadata = Base.metadata # type: ignore
 
 def run_migrations_offline():
     # この関数内で context.configure() を呼び出す際に target_metadata を使用

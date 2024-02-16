@@ -1,3 +1,5 @@
-curl -X POST "http://127.0.0.1:5000/analyze-image/" \
-     -H "Content-Type: application/json" \
-     -d "{\"image_path\": \"/image/d03f1d36ca69348c51aa/c413eac329e1c0d03/test.jpg\"}"
+curl -X POST \
+  "http://127.0.0.1:5000/api/analyze-image/" \
+  -H "Content-Type: application/json" \
+  -d "{\"image_path\": \"/image/d03f1d36ca69348c51aa/c413eac329e1c0d03/test.jpg\"}"
+

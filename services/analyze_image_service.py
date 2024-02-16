@@ -35,7 +35,6 @@ class AnalyzeImage:
     # モックAPIの呼び出し(ゆくゆく削除する)
     def _mock_api_call(self,image_path: str) -> ImageDescriptionResponse:
         # モックレスポンスの生成
-        image_description_response = {}
         if(self.is_mock_error):
             image_description_response = ImageDescriptionResponse(
                 success = False,
