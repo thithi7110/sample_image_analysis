@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
-from repository_builders.ai_analysis_log_repository import get_ai_analysis_log_repository
+from repository_builders.ai_analysis_log_repository_builders import get_ai_analysis_log_repository
 from repositories.ai_analysis_log_repository import AIAnalysisLogRepository
 from services.analyze_image_service import AnalyzeImage
 from fastapi import Depends, FastAPI, HTTPException
