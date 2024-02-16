@@ -53,13 +53,25 @@ uvicorn main:app --port 5000 --reload
 ```
 
 
-## mypyチェック
+## 7. mypyチェック
 - mypyによるエラーチェック
 ```
 poetry run mypy .
 ```
 
-## pytest
+## 8. pytest
 ```
 poetry run pytest .
 ```
+
+## 9. 実行
+サーバ起動させた状態で以下curl実行
+```
+curl -X POST \
+  "http://127.0.0.1:5000/api/analyze-image/" \
+  -H "Content-Type: application/json" \
+  -d "{\"image_path\": \"/image/d03f1d36ca69348c51aa/c413eac329e1c0d03/test.jpg\"}"
+```
+
+実施成功で以下ai_analysis_logテーブルにデータが登録されます
+![Alt text](image.png)
