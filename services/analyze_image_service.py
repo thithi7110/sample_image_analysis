@@ -3,7 +3,7 @@ import os
 from pydantic import BaseModel
 from typing import Dict, Any
 import requests
-
+import time
 
 class ImageDescriptionResponse(BaseModel):
     success: bool
@@ -34,6 +34,9 @@ class AnalyzeImage:
 
     # モックAPIの呼び出し(ゆくゆく削除する)
     def _mock_api_call(self,image_path: str) -> ImageDescriptionResponse:
+        #一定時間待ちを作る
+        time.sleep(1)
+        
         # モックレスポンスの生成
         if(self.is_mock_error):
             image_description_response = ImageDescriptionResponse(
